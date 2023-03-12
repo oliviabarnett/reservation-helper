@@ -3,15 +3,39 @@ import openai
 
 from flask import Flask, render_template, request
 
-def create_app(test_config=None):
 
+class Chat:
+    def __init__(self):
+        # Set up OpenAI API credentials
+        openai.api_key = os.getenv("OPENAI_API_KEY")
+        
+        self.model = "gpt-3.5-turbo"
 
-    # TODO: Figure out secret management service
-    # Currently set manually using env vars
-    openai.api_key = os.getenv("OPENAI_API_KEY")
-    model_engine = "davinci"
+        # ChatGpt doesn't keep track of a conversation. We have to send it the whole conversation each time.
+        self.messages = [{"role": "system", "content": "You are a friendly assistant bot built to help users find and create reservations to restaurants"}]
+        
+        response = openai.ChatCompletion.create(
+            model=self.model,
+            messages= self.messages,
+            max_tokens=20
+        )
+        
+        self.messages.append({"role": "assistant", "content": response["choices"][0]["message"].content})
 
-    # create and configure the app
+    def send_message(self, message):
+
+        self.messages.append({"role": "user", "content": message})
+
+        response = openai.ChatCompletion.create(
+            model=self.model,
+            messages=self.messages,
+            max_tokens=20,
+        )
+        
+        self.messages.append({"role": "assistant", "content": response["choices"][0]["message"].content})
+        return response["choices"][0]["message"].content
+
+def app_set_up(test_config):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
@@ -30,6 +54,16 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
+    return app
+
+def create_app(test_config=None):   
+
+    # create and configure the app
+    app = app_set_up(test_config)
+
+    # Set up chat with chatGpt
+    chatGpt = Chat()
+
 
     @app.route('/')
     def home():
@@ -37,21 +71,9 @@ def create_app(test_config=None):
 
     @app.route("/chat", methods=["POST"])
     def chat():
-        # Get the user input from the form data
         user_input = request.form["input_text"]
-        print("<OB> user input = ", user_input)
 
-        # Use the OpenAI API to generate a response to the user input
-        completion = openai.Completion()
-
-        response = completion.create(
-            engine=model_engine,
-            prompt=user_input,
-            max_tokens=50,
-            temperature=0.5,
-        )
-        print("<OB> response = ", response)
-        bot_response = response.choices[0].text.strip()
+        bot_response = chatGpt.send_message(user_input)
 
         # Return the bot's response as a JSON object
         return {"response": bot_response}
