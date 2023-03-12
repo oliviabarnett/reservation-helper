@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Text Chat UI</title>
+  </head>
+  <body style="background-color: #f1f1f1; font-family: Arial, sans-serif; margin: 0;">
+
+    <div style="background-color: white; max-width: 500px; margin: auto; padding: 20px;">
+      <h1 style="text-align: center;">Resy Helper</h1>
+      <div id="output-area" style="height: 300px; overflow-y: scroll; padding: 10px; border: 1px solid #ccc;"></div>
+      <form id="input-form" style="display: flex; justify-content: space-between; margin-top: 20px;">
+        <input type="text" id="input-field" autocomplete="off" style="flex: 1; margin-right: 10px; padding: 10px; border: 1px solid #ccc;">
+        <button type="submit" style="padding: 10px;">Send</button>
+      </form>
+    </div>
+
+	<script>
+	  const inputForm = document.querySelector("#input-form");
+	  const inputField = document.querySelector("#input-field");
+	  const outputArea = document.querySelector("#output-area");
+
+	  inputForm.addEventListener("submit", (e) => {
+	    e.preventDefault();
+
+	    const userMessage = inputField.value;
+	    inputField.value = "";
+
+	    outputArea.innerHTML += `
+	      <div class="message user-message">${userMessage}</div>
+	    `;
+
+	    fetch("/chat", {
+	      method: "POST",
+	      headers: {
+	        "Content-Type": "application/x-www-form-urlencoded",
+	      },
+	      body: `input_text=${encodeURIComponent(userMessage)}`,
+	    })
+	      .then((response) => response.json())
+	      .then((data) => {
+	        const botMessage = data.response;
+
+	        console.log(data)
+
+	        outputArea.innerHTML += `
+	          <div class="message bot-message">${botMessage}</div>
+	        `;
+	      });
+	  });
+	</script>
+
+
+  </body>
+</html>
