@@ -1,66 +1,8 @@
+
 import os
-import openai
-from datetime import date
 from flask import Flask, render_template, request
-
-MAX_TOKENS=50
-
-class ChatGPTClient:
-    def __init__(self):
-        # Set up OpenAI API credentials
-        openai.api_key = os.getenv("OPENAI_API_KEY")
-        
-        self.model = "gpt-3.5-turbo"
-
-        # ChatGpt doesn't keep track of a conversation. We have to send it the whole conversation each time.
-        self.messages = [{"role": "system", "content": "You are a bot built to help users find and create reservations to restaurants."}]
-        
-        response = openai.ChatCompletion.create(
-            model=self.model,
-            messages= self.messages,
-            max_tokens=MAX_TOKENS
-        )
-        
-        self.messages.append({"role": "assistant", "content": response["choices"][0]["message"].content})
-
-    def send_message(self, message):
-        print("DEBUG: messages = ", self.messages)
-
-        self.messages.append({"role": "user", "content": message})
-
-        response = openai.ChatCompletion.create(
-            model=self.model,
-            messages=self.messages,
-            max_tokens=MAX_TOKENS,
-        )
-        
-        self.messages.append({"role": "assistant", "content": response["choices"][0]["message"].content})
-        return response["choices"][0]["message"].content
-
-class ResyClient:
-
-    # http://subzerocbd.info/#introduction
-    def __init__(self):
-        self.baseUrl = "https://api.resy.com"
-
-        # TODO: where do I get these
-        self.headers = {
-            'X-Resy-Auth-Token': os.getenv("RESY_AUTH_TOKEN"),
-            'Authorization': os.getenv("RESY_API_KEY")
-        }
-
-
-    # TODO: pass in date/time + location?
-    def findOpenReservations(partySize):
-        day = date.today().strftime("%Y/%m/%d")
-        params = {
-            'lat': '40.696235726060294',
-            'long': '-73.97968099999999',
-            'day': day,
-            'party_size': str(partySize)
-        }
-        response = requests.get(url, params=params, headers=headers)
-
+from flaskr.models.ChatGPTClient import ChatGPTClient
+from flaskr.models.ResyClient import ResyClient
 
 
 def app_set_up(test_config):
@@ -92,6 +34,12 @@ def create_app(test_config=None):
     chatGptClient = ChatGPTClient()
     resyClient = ResyClient()
 
+    @app.route('/find-res')
+    def findRes():
+        restaurants_with_availability = resyClient.find_open_reservations(2)
+        restaurants_with_availability_str = '; '.join(r.to_string() for r in restaurants_with_availability)
+        return restaurants_with_availability_str
+
 
     @app.route('/')
     def home():
@@ -106,7 +54,7 @@ def create_app(test_config=None):
         user_input = request.form["input_text"]
 
 
-        bot_response = chatGptClient.send_message(user_input)
+        bot_response = "hello" # chatGptClient.send_message(user_input)
         
 
 
