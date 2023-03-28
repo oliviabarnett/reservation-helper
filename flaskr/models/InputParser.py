@@ -15,7 +15,8 @@ class InputParser:
 
             
             # FML this doesn't work
-            # I may be to train spacy to extract the data I want
+            # I may need to literally train spacy to extract the data I want
+            # Or I can use another chatgpt chat to extract this data
             for token in doc:
                 print(token.ent_type_)
                 if token.pos_ == "NOUN" and "food" in token.text:

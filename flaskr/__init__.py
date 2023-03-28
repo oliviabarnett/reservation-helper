@@ -34,17 +34,8 @@ def create_app(test_config=None):
     app = app_set_up(test_config)
 
     chatGptClient = ChatGPTClient("You are a bot built to help users find and create reservations to restaurants.")
-
     resyClient = ResyClient()
-
     parsed_info = InputParser()
-
-
-    @app.route('/find-res')
-    def findRes():
-        restaurants_with_availability = resyClient.find_open_reservations(2)
-        restaurants_with_availability_str = '; '.join(r.to_string() for r in restaurants_with_availability)
-        return restaurants_with_availability_str
 
 
     @app.route('/')
