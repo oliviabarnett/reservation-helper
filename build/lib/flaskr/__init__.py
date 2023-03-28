@@ -3,7 +3,6 @@ from flask import Flask, render_template, request
 import os
 from flaskr.models.ChatGPTClient import ChatGPTClient
 from flaskr.models.ResyClient import ResyClient
-from flaskr.models.InputParser import InputParser
 
 
 def app_set_up(test_config):
@@ -37,8 +36,6 @@ def create_app(test_config=None):
 
     resyClient = ResyClient()
 
-    parsed_info = InputParser()
-
 
     @app.route('/find-res')
     def findRes():
@@ -54,15 +51,22 @@ def create_app(test_config=None):
     @app.route("/chat", methods=["POST"])
     def chat():
 
+        # TODO: We somehow need to take this input, determine if enough information has been given yet to make a call into resy and retrieve information
+        # Perhaps use another ChatGPT client that only goes from english text --> resy api calls? Then return that info, feed it into the 
+        # other chat gpt client which will convert from json resy data --> english response?
         user_input = request.form["input_text"]
 
-        # This does not work. We need to be able to process user input
-        # and understand what needs to be called into resy..
-        result = parsed_info.extract_from_user_input(user_input)
-        resyClient.find_open_reservations(result)
+        parsed_info = InputParser(user_input)
 
+        result = parsed_info.extract_from_user_input()
 
         chat_bot_response = chatGptClient.send_message(user_input)
+
+
+
+        print("<INFO BOT>")
+        print(info_bot_response)
+
 
         return {"response": chat_bot_response}
 

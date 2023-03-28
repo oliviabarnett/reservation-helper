@@ -36,16 +36,14 @@ class ResyClient:
         return Restaurant(venue_info, slots)   
 
 
-    # TODO: pass in date/time + location?
-    def find_open_reservations(self, partySize):
-
-
-        day = (date.today() + timedelta(days=1)).strftime("%Y-%m-%d")
+    def find_open_reservations(self, resy_req_info):
+        
+        day = (resy_req_info.date).strftime("%Y-%m-%d")
         params = {
             'lat': '40.696235726060294',
             'long': '-73.97968099999999',
             'day': day,
-            'party_size': str(partySize),
+            'party_size': str(resy_req_info.party_size),
             'limit': 10
         }
         response = requests.get(self.baseUrl + "/4/find", params=params, headers=self.headers)
