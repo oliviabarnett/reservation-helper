@@ -5,11 +5,11 @@ MAX_TOKENS=50
 
 # Sets up a conversation with chatGpt and initializes the conversation with a system message telling chatGpt who they are
 class ChatGPTClient:
-    def __init__(self, initializingMessage):
+    def __init__(self, initializingMessage, model):
         # Set up OpenAI API credentials
         openai.api_key = os.getenv("OPENAI_API_KEY")
         
-        self.model = "gpt-3.5-turbo"
+        self.model = model
 
         # ChatGpt doesn't keep track of a conversation. We have to send it the whole conversation each time.
         self.messages = [{"role": "system", "content": initializingMessage}]

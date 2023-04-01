@@ -1,0 +1,31 @@
+{"prompt":"I am thinking about maybe sushi in west village around 7 pm tomorrow for 4 people ->\n\n###\n\n","completion":" {\"partySize\": \"4\", \"when\": \"2023-03-26\", \"latitude\": \"40.696235726060294\", \"longitude\": \"-73.97968099999999\"}"}
+{"prompt":"My name is Olivia. Who are you? ->\n\n###\n\n","completion":" {}"}
+{"prompt":"I want dinner in brooklyn somewhere, maybe pizza? ->\n\n###\n\n","completion":" {\"partySize\": \"\", \"when\": \"2023-03-26\", \"latitude\": \"40.678273.9442\", \"longitude\": \"-73.949997\"}"}
+{"prompt":"I need to book a table for 4 at a restaurant in the West Village for tonight\n\n###\n\n","completion":" {'partySize': '4', 'when': '2023-04-01', 'latitude': '40.734965', 'longitude': '-74.004159'}"}
+{"prompt":"Can you help me find a bar in Brooklyn for a party of 6?\n\n###\n\n","completion":" {'partySize': '6', 'when': '2023-04-01', 'latitude': '40.649402', 'longitude': '-73.953779'}"}
+{"prompt":"I want to reserve a spot at a rooftop lounge in Manhattan for tomorrow night\n\n###\n\n","completion":" {'partySize': '2', 'when': '2023-04-02', 'latitude': '40.753717', 'longitude': '-73.99958'}"}
+{"prompt":"Looking to book a private room for a birthday dinner in Queens for 8 people\n\n###\n\n","completion":" {'partySize': '8', 'when': '2023-04-03', 'latitude': '40.728224', 'longitude': '-73.794852'}"}
+{"prompt":"Can you recommend a good sushi restaurant in the Upper East Side for tonight?\n\n###\n\n","completion":" {'partySize': '2', 'when': '2023-04-01', 'latitude': '40.773565', 'longitude': '-73.956555'}"}
+{"prompt":"I want to make a reservation at a steakhouse in Midtown for tomorrow night\n\n###\n\n","completion":" {'partySize': '2', 'when': '2023-04-02', 'latitude': '40.758896', 'longitude': '-73.981883'}"}
+{"prompt":"Looking for a restaurant in Williamsburg that can accommodate a group of 10 people for dinner tonight\n\n###\n\n","completion":" {'partySize': '10', 'when': '2023-04-01', 'latitude': '40.712784', 'longitude': '-73.951868'}"}
+{"prompt":"Can you help me find a restaurant in the Flatiron District for a party of 5?\n\n###\n\n","completion":" {'partySize': '5', 'when': '2023-04-01', 'latitude': '40.740077', 'longitude': '-73.989052'}"}
+{"prompt":"Hi, how are you doing today?\n\n###\n\n","completion":" {}"}
+{"prompt":"Can you tell me what time it is?\n\n###\n\n","completion":" {}"}
+{"prompt":"I just finished reading a great book, have you read anything good lately?\n\n###\n\n","completion":" {}"}
+{"prompt":"I'm thinking about going for a walk later, what do you think?\n\n###\n\n","completion":" {}"}
+{"prompt":"Do you know any good jokes?\n\n###\n\n","completion":" {}"}
+{"prompt":"I need to buy some new clothes, any recommendations?\n\n###\n\n","completion":" {}"}
+{"prompt":"What's your favorite color?\n\n###\n\n","completion":" {}"}
+{"prompt":"I'm really bored right now, any suggestions for things to do?\n\n###\n\n","completion":" {}"}
+{"prompt":"Can you tell me how to get to the nearest subway station?\n\n###\n\n","completion":" {}"}
+{"prompt":"What do you think about the weather today?\n\n###\n\n","completion":" {}"}
+{"prompt":"I'm looking for a restaurant in the East Village that can seat 6 people tomorrow night.\n\n###\n\n","completion":" {\"partySize\": \"6\", \"when\": \"2023-04-02\", \"latitude\": \"40.727504\", \"longitude\": \"-73.981166\"}"}
+{"prompt":"Can you help me find a bar in the West Village that's open late tonight?\n\n###\n\n","completion":" {\"partySize\": \"\", \"when\": \"2023-04-01\", \"latitude\": \"40.735781\", \"longitude\": \"-74.004386\"}"}
+{"prompt":"I need to make a reservation for 8 people at a steakhouse in Midtown for next Friday.\n\n###\n\n","completion":" {\"partySize\": \"8\", \"when\": \"2023-04-07\", \"latitude\": \"40.758895\", \"longitude\": \"-73.981880\"}"}
+{"prompt":"Can you recommend a sushi restaurant in the Upper West Side that's good for a date?\n\n###\n\n","completion":" {\"partySize\": \"2\", \"when\": \"2023-04-01\", \"latitude\": \"40.785432\", \"longitude\": \"-73.974374\"}"}
+{"prompt":"I want to book a table for 4 at a Italian restaurant in the Flatiron District for tomorrow night.\n\n###\n\n","completion":" {\"partySize\": \"4\", \"when\": \"2023-04-02\", \"latitude\": \"40.740438\", \"longitude\": \"-73.989181\"}"}
+{"prompt":"I'm looking for a restaurant in Brooklyn that has a private room for a party of 10.\n\n###\n\n","completion":" {\"partySize\": \"10\", \"when\": \"2023-04-01\", \"latitude\": \"40.650002\", \"longitude\": \"-73.949997\"}"}
+{"prompt":"Can you help me find a rooftop bar in Midtown that's good for a group of 6 people?\n\n###\n\n","completion":" {\"partySize\": \"6\", \"when\": \"2023-04-01\", \"latitude\": \"40.754899\", \"longitude\": \"-73.981432\"}"}
+{"prompt":"I want to make a reservation at a French restaurant in the West Village for 2 people for next Saturday.\n\n###\n\n","completion":" {\"partySize\": \"2\", \"when\": \"2023-04-08\", \"latitude\": \"40.734766\", \"longitude\": \"-74.005973\"}"}
+{"prompt":"Can you recommend a good bar in Williamsburg for a party of 4 people?\n\n###\n\n","completion":" {\"partySize\": \"4\", \"when\": \"2023-04-01\", \"latitude\": \"40.708308\", \"longitude\": \"-73.963014\"}"}
+{"prompt":"I need to book a private room for a corporate dinner in Midtown for 20 people.\n\n###\n\n","completion":" {\"partySize\": \"20\", \"when\": \"2023-04-01\", \"latitude\": \"40.758896\", \"longitude\": \"-73.981883\"}"}

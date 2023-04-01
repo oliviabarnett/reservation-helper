@@ -28,18 +28,22 @@ def app_set_up(test_config):
     return app
 
 
-def create_app(test_config=None):   
+def create_app(test_config=None): 
+    input_fine_tuned_model = os.environ.get('CUSTOM_FINE_TUNED_MODEL')
+    if not input_fine_tuned_model:
+        raise ValueError("Fine tuned model name required!")
 
     # create and configure the app
     app = app_set_up(test_config)
 
-    chatGptClient = ChatGPTClient("You are a bot built to help users find and create reservations to restaurants.")
+    chatGptClient = ChatGPTClient("You are a bot built to help users find and create reservations to restaurants.", "gpt-3.5-turbo")
     resyClient = ResyClient()
-    parsed_info = InputParser()
+    parsed_info = InputParser(input_fine_tuned_model)
 
 
     @app.route('/')
     def home():
+        input_string = request.args.get('string-param')
         return render_template("home.html")
 
     @app.route("/chat", methods=["POST"])

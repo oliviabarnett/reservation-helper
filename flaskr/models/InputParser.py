@@ -1,8 +1,17 @@
 import spacy
+from flaskr.models.ChatGPTClient import ChatGPTClient
 
 class InputParser:
-    def __init__(self):
+    def __init__(self, model):
         self.nlp = spacy.load("en_core_web_sm")
+
+        # Surprise! Using chat gpt behind the scenes.
+        initiationMessage = "You are a tool for extracting specific info from text to json. I will give you a text input and you will extract pertinent information and return text arguments as json. The output you respond should ONLY be json exactly following the below json format. Do not return anything else. If no information cannot be extracted from the given input, return an empty json string."
+        
+        # TODO: Fix this! Not working
+        # print("model " + model)
+        # self.parsingClient = ChatGPTClient(initiationMessage, model)
+
 
     def extract_from_user_input(self, user_input): 
             doc = self.nlp(user_input)
